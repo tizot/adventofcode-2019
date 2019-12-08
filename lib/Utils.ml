@@ -17,6 +17,6 @@ let cartesian l l' =
 let (--) i j =
   let rec aux n acc =
     if n < i then acc else aux (n-1) (n :: acc)
-  in aux j [] ;;
+  in aux j []
 
 let range m p = m -- p
