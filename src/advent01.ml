@@ -4,7 +4,7 @@ let simple_fuel modl = modl / 3 - 2
 
 let full_fuel modl =
   let rec aux m acc = let fuel = m / 3 - 2 in
-  match fuel > 0 with
+    match fuel > 0 with
     | true -> aux fuel (fuel + acc)
     | false -> acc
   in aux modl 0

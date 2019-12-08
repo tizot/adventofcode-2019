@@ -13,10 +13,10 @@ let format_coord (c: coord) =
 let norm (c: coord) = let (x, y) = c in abs x + abs y
 
 let move_by (orig: coord) steps dir = let (x0, y0) = orig in match dir with
- | Up -> (x0, y0 + steps)
- | Down -> (x0, y0 - steps)
- | Right -> (x0 + steps, y0)
- | Left -> (x0 - steps, y0)
+  | Up -> (x0, y0 + steps)
+  | Down -> (x0, y0 - steps)
+  | Right -> (x0 + steps, y0)
+  | Left -> (x0 - steps, y0)
 
 let direction_of_char c = match c with
   | 'U' -> Up
@@ -35,7 +35,7 @@ let rec intersection seg1 seg2: coord option = match (seg1, seg2) with
       if (x21 > x12) then None else Some(x21, y1)
     )
   | Vertical (x1, (y11, y12)), Horizontal ((x21, x22), y2) ->
-      if (x1 >= x21 && x1 <= x22 && y2 >= y11 && y2 <= y12) then Some (x1, y2) else None
+    if (x1 >= x21 && x1 <= x22 && y2 >= y11 && y2 <= y12) then Some (x1, y2) else None
   | _ -> intersection seg2 seg1
 
 let decode_path l: path =
@@ -53,10 +53,10 @@ let segment_of_move move (origin: coord): segment = let (x0, y0) = origin in mat
 
 let build_segments (p: path) =
   let rec aux moves built current = match moves with
-  | [] -> built
-  | m :: ms -> let (dir, steps) = m in
-    let seg = segment_of_move m current in
-    aux ms (seg :: built) (move_by current steps dir)
+    | [] -> built
+    | m :: ms -> let (dir, steps) = m in
+      let seg = segment_of_move m current in
+      aux ms (seg :: built) (move_by current steps dir)
   in aux p [] (0, 0) |> List.rev
 
 let norm_compare a b = compare (norm a) (norm b)
@@ -105,7 +105,7 @@ let decode_input inp = match inp with
   | p1 :: p2 :: [] -> (
       decode_path (String.split_on_char ',' p1),
       decode_path (String.split_on_char ',' p2)
-  )
+    )
   | _ -> failwith "Input contains more than 2 lines"
 
 let () =
